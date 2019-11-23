@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "allowJs": true,
+        "esModuleInterop": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "./jest.config.js",
+        "./src/__tests__/**/*"
+    ]
+}
