@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest --watch --passWithNoTests"
   },
   "author": "",
   "license": "ISC",

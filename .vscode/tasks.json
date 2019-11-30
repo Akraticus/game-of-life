@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Production Build",
+            "label": "build",
             "type": "shell",
             "command": "./scripts/build.cmd",
             "args": ["built", "tsconfig.json"],
@@ -19,7 +19,7 @@
             }
         },
         {
-            "label": "Clean output directories",
+            "label": "clean output directories",
             "type": "shell",
             "command": "./scripts/clean.cmd",
             "args": ["built", "test/built"],
