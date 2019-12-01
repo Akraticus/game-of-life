@@ -63,3 +63,48 @@ test("transformByRules() returns expected grid", () => {
     ];
     expect(arraysEqual(result.Cells, expectedResult)).toBe(true);
 })
+
+test("transformByRules() returns expected grid - advanced", () => {
+    let cells = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 1],
+        [0, 0, 0, 0, 0]
+    ];
+    let grid = new Grid(cells);
+
+    let rule1 = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ];
+
+    let rule2 = [
+        [undefined, undefined, undefined],
+        [undefined, 0, 0],
+        [undefined, 0, 0]
+    ];
+
+    let rule3 = [
+        [0, 0, 0],
+        [1, 0, 1],
+        [0, 0, 0]
+    ];
+
+    let rules = [
+        new Rule(1, rule1),
+        new Rule(1, rule2),
+        new Rule(1, rule3)
+    ];
+
+    let result = grid.transformByRules(rules);
+    let expectedResult = [
+        [1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1],
+        [0, 0, 0, 0, 0]
+    ];
+    expect(arraysEqual(result.Cells, expectedResult)).toBe(true);
+})
