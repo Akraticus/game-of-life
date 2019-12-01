@@ -1,19 +1,19 @@
 import { arraysEqual } from "./util";
 
 export class Rule {
-    private Area: Array<Array<number>>;
-    private ResultState: number;
+    private _area: Array<Array<number>>;
+    private _resultState: number;
 
     constructor(resultState: number, area: Array<Array<number>>) {
-        this.ResultState = resultState;
-        this.Area = area;
+        this._resultState = resultState;
+        this._area = area;
     }
 
-    getResultState(): number { return this.ResultState; }
+    public get ResultState():number { return this._resultState;}
 
-    getArea(): Array<Array<number>> { return this.Area; }
+    public get Area():Array<Array<number>> { return this._area.slice(); }
 
     isMatch(area: Array<Array<number>>): boolean {
-        return arraysEqual(this.Area, area);
+        return arraysEqual(this._area, area);
     }
 }

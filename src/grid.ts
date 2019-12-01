@@ -1,12 +1,14 @@
+import { Rule } from "./rule";
+
 export class Grid {
     /// single cell at x, y => Cells[x][y]
-    private Cells: Array<Array<number>>;
+    private _cells: Array<Array<number>>;
 
-    constructor(sizeX: number, sizeY: number) {
-        this.Cells = new Array<Array<number>>(sizeX);
-        let row = new Array<number>(sizeY).fill(0);
-        this.Cells = this.Cells.fill(row.slice());
+    constructor(cells:Array<Array<number>>) {
+        this._cells = cells;
     }
+
+    public get Cells():Array<Array<number>> { return this._cells.slice();}
 
     /**
      * Gets the 3x3 area surrounding the cell at [x,y].
@@ -19,7 +21,7 @@ export class Grid {
 
         let areaIndex = 0;
         for (let ix = x - 1; ix <= x + 1; ix++) {
-            let sourceRow = this.Cells[ix];
+            let sourceRow = this._cells[ix];
 
             let areaRow = [];
             let rowIndex = 0;
@@ -38,5 +40,29 @@ export class Grid {
         }
 
         return area;
+    }
+
+    /**
+     * Iterates over the entire collection of cells, and transforms them by the first applicable rule in the set of rules.
+     * If no applicable rule is found for a cell, it retains its original value.
+     * @param rules 
+     */
+    transformByRules(rules:Array<Rule>):Grid{
+        let newCells = new Array<Array<number>>(this._cells.length);
+
+        for(let xi = 0; xi < this._cells.length; xi++){
+            let row = this._cells[xi];
+            let newRow = row.slice();
+            for(let yi = 0; yi < row.length; yi++){
+                let cellArea = this.getArea(xi, yi);
+                // find the first rule that matches the cell area
+                let rule = rules.find(rule => rule.isMatch(cellArea));
+                if(rule) newRow[yi] = rule.ResultState
+            }
+
+            newCells[xi] = newRow;
+        }
+
+        return new Grid(newCells);
     }
 }

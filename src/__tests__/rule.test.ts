@@ -8,7 +8,7 @@ test("isMatch() returns true", () => {
     fasit = fasit.fill(row.slice());
 
     let rule = new Rule(1, area);
-    expect(rule.getResultState()).toBe(1);
+    expect(rule.ResultState).toBe(1);
     expect(rule.isMatch(fasit)).toBe(true);
 })
 
@@ -21,7 +21,7 @@ test("isMatch() returns false", () => {
     fasit = fasit.fill(falseRow.slice());
 
     let rule = new Rule(1, area);
-    expect(rule.getResultState()).toBe(1);
+    expect(rule.ResultState).toBe(1);
     expect(rule.isMatch(fasit)).toBe(false);
 })
 
@@ -33,6 +33,6 @@ test("isMatch() handles undefined as values", () => {
     fasit = fasit.fill(row.slice());
 
     let rule = new Rule(1, area);
-    expect(rule.getResultState()).toBe(1);
+    expect(rule.ResultState).toBe(1);
     expect(rule.isMatch(fasit)).toBe(true);
 })
