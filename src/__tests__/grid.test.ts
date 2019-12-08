@@ -1,5 +1,5 @@
 import { Grid } from "../grid";
-import { Rule } from "../rule";
+import { PatternRule } from "../rule";
 import { ArraysEqual } from "../util";
 
 test("getArea() returns 3x3 grid with values", () => {
@@ -54,7 +54,7 @@ test("transformByRules() returns expected grid", () => {
         [0, 0, 0],
         [0, 0, 0]
     ];
-    let rules = [new Rule(1, ruleArea)];
+    let rules = [new PatternRule(1, ruleArea)];
     let result = grid.TransformByRules(rules);
     let expectedResult = [
         [0, 0, 0],
@@ -93,9 +93,9 @@ test("transformByRules() returns expected grid - advanced", () => {
     ];
 
     let rules = [
-        new Rule(1, rule1),
-        new Rule(1, rule2),
-        new Rule(1, rule3)
+        new PatternRule(1, rule1),
+        new PatternRule(1, rule2),
+        new PatternRule(1, rule3)
     ];
 
     let result = grid.TransformByRules(rules);
@@ -134,8 +134,8 @@ test("rules with undefined cells are ignored during matching areas to areas", ()
     ]
 
     let rules = [
-        new Rule(1, rule1),
-        new Rule(0, rule2)
+        new PatternRule(1, rule1),
+        new PatternRule(0, rule2)
     ];
 
     let result = grid.TransformByRules(rules);

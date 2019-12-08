@@ -1,13 +1,13 @@
 import { Grid } from "./grid";
-import { Rule } from "./rule";
+import { PatternRule, IRule } from "./rule";
 import {  IEvent, EventDispatcher} from "strongly-typed-events";
 
 export class Simulator{
     private _iterations:Array<Grid>;
-    private _rules:Array<Rule>;
+    private _rules:Array<IRule>;
     private _onIterationEvent = new EventDispatcher<Simulator, number>();
 
-    constructor(seed:Grid, rules:Array<Rule>){
+    constructor(seed:Grid, rules:Array<IRule>){
         this._iterations = new Array<Grid>(seed);
         this._rules = rules;
     }

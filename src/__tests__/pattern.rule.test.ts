@@ -1,4 +1,4 @@
-import { Rule } from "../rule";
+import { PatternRule } from "../rule";
 
 test("IsMatch() returns true", () => {
     let area = new Array<Array<number>>(3);
@@ -7,7 +7,7 @@ test("IsMatch() returns true", () => {
     area = area.fill(row.slice());
     fasit = fasit.fill(row.slice());
 
-    let rule = new Rule(1, area);
+    let rule = new PatternRule(1, area);
     expect(rule.ResultState).toBe(1);
     expect(rule.IsMatch(fasit)).toBe(true);
 })
@@ -20,7 +20,7 @@ test("IsMatch() returns false", () => {
     let falseRow = [0,1,0];
     fasit = fasit.fill(falseRow.slice());
 
-    let rule = new Rule(1, area);
+    let rule = new PatternRule(1, area);
     expect(rule.ResultState).toBe(1);
     expect(rule.IsMatch(fasit)).toBe(false);
 })
@@ -32,7 +32,7 @@ test("IsMatch() handles undefined as values", () => {
     area = area.fill(row.slice());
     fasit = fasit.fill(row.slice());
 
-    let rule = new Rule(1, area);
+    let rule = new PatternRule(1, area);
     expect(rule.ResultState).toBe(1);
     expect(rule.IsMatch(fasit)).toBe(true);
 })

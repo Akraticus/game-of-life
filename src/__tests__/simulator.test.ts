@@ -1,7 +1,7 @@
 import {Simulator  } from "../simulator";
 import { Grid } from "../grid";
 import {  ArraysEqual} from "../util";
-import { Rule } from "../rule";
+import { PatternRule } from "../rule";
 
 test("simulator seed is added to iterations", () => {
     let cells = [
@@ -33,7 +33,7 @@ test("simulator seed is added to iterations", async () => {
     ];
 
     let rules = [
-        new Rule(1, ruleCells)
+        new PatternRule(1, ruleCells)
     ];
 
     let sim = new Simulator(seed, rules);
@@ -49,3 +49,4 @@ test("simulator seed is added to iterations", async () => {
     sim.Iterate();
     expect(ArraysEqual(sim.Iterations.pop().Cells, expectedResult)).toBe(true);
 })
+

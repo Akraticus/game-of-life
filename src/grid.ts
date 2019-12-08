@@ -1,4 +1,4 @@
-import { Rule } from "./rule";
+import { PatternRule, IRule } from "./rule";
 
 export class Grid {
     /// single cell at x, y => Cells[x][y]
@@ -48,7 +48,7 @@ export class Grid {
      * Returns a new Grid-object with the transformed cells.
      * @param rules 
      */
-    TransformByRules(rules:Array<Rule>):Grid{
+    TransformByRules(rules:Array<IRule>):Grid{
         let newCells = new Array<Array<number>>(this._cells.length);
 
         for(let xi = 0; xi < this._cells.length; xi++){
