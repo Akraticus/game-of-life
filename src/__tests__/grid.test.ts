@@ -57,9 +57,9 @@ test("transformByRules() returns expected grid", () => {
     let rules = [new Rule(1, ruleArea)];
     let result = grid.TransformByRules(rules);
     let expectedResult = [
-        [0,0,0],
-        [0,1,0],
-        [0,0,0]
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 0, 0]
     ];
     expect(ArraysEqual(result.Cells, expectedResult)).toBe(true);
 })
@@ -81,9 +81,9 @@ test("transformByRules() returns expected grid - advanced", () => {
     ];
 
     let rule2 = [
-        [undefined, undefined, undefined],
-        [undefined, 0, 0],
-        [undefined, 0, 0]
+        [null, null, null],
+        [null, 0, 0],
+        [null, 0, 0]
     ];
 
     let rule3 = [
@@ -107,4 +107,55 @@ test("transformByRules() returns expected grid - advanced", () => {
         [0, 0, 0, 0, 0]
     ];
     expect(ArraysEqual(result.Cells, expectedResult)).toBe(true);
+})
+
+test("rules with undefined cells are ignored during matching areas to areas", () => {
+    let cells = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ];
+    let grid = new Grid(cells);
+
+    // Will change all zeroes to ones
+    let rule1 = [
+        [undefined, undefined, undefined],
+        [undefined,         0, undefined],
+        [undefined, undefined, undefined]
+    ];
+
+    // will change all ones to zeroes
+    let rule2 = [
+        [undefined, undefined, undefined],
+        [undefined,         1, undefined],
+        [undefined, undefined, undefined]
+    ]
+
+    let rules = [
+        new Rule(1, rule1),
+        new Rule(0, rule2)
+    ];
+
+    let result = grid.TransformByRules(rules);
+    let expectedStepOneResult = [
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+    ];
+    expect(ArraysEqual(result.Cells, expectedStepOneResult)).toBe(true);
+
+    let expectedStepTwoResult = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ];
+
+    let result2 = result.TransformByRules(rules);
+    expect(ArraysEqual(result2.Cells, expectedStepTwoResult)).toBe(true);
 })

@@ -28,11 +28,11 @@ export class Grid {
             for (let iy = y - 1; iy <= y + 1; iy++) {
                 // if we have no source row, the entire row is undefined
                 if (!sourceRow) {
-                    areaRow[rowIndex++] = undefined;
+                    areaRow[rowIndex++] = null;
                     continue;
                 }
                 // copy over the values we find
-                areaRow[rowIndex++] = sourceRow[iy];
+                areaRow[rowIndex++] = sourceRow[iy] !== undefined ? sourceRow[iy] : null;
             }
 
             // store the generated row
