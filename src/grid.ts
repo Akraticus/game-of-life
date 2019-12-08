@@ -16,7 +16,7 @@ export class Grid {
      * @param x x-axis position on the grid of the center cell
      * @param y y-axis position on the grid of the center cell
      */
-    getArea(x: number, y: number) {
+    GetArea(x: number, y: number) {
         let area = new Array<Array<number>>(3);
 
         let areaIndex = 0;
@@ -45,18 +45,19 @@ export class Grid {
     /**
      * Iterates over the entire collection of cells, and transforms them by the first applicable rule in the set of rules.
      * If no applicable rule is found for a cell, it retains its original value.
+     * Returns a new Grid-object with the transformed cells.
      * @param rules 
      */
-    transformByRules(rules:Array<Rule>):Grid{
+    TransformByRules(rules:Array<Rule>):Grid{
         let newCells = new Array<Array<number>>(this._cells.length);
 
         for(let xi = 0; xi < this._cells.length; xi++){
             let row = this._cells[xi];
             let newRow = row.slice();
             for(let yi = 0; yi < row.length; yi++){
-                let cellArea = this.getArea(xi, yi);
+                let cellArea = this.GetArea(xi, yi);
                 // find the first rule that matches the cell area
-                let rule = rules.find(rule => rule.isMatch(cellArea));
+                let rule = rules.find(rule => rule.IsMatch(cellArea));
                 if(rule) newRow[yi] = rule.ResultState
             }
 

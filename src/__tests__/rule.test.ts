@@ -1,6 +1,6 @@
 import { Rule } from "../rule";
 
-test("isMatch() returns true", () => {
+test("IsMatch() returns true", () => {
     let area = new Array<Array<number>>(3);
     let fasit = new Array<Array<number>>(3);
     let row = [0,0,0];
@@ -9,10 +9,10 @@ test("isMatch() returns true", () => {
 
     let rule = new Rule(1, area);
     expect(rule.ResultState).toBe(1);
-    expect(rule.isMatch(fasit)).toBe(true);
+    expect(rule.IsMatch(fasit)).toBe(true);
 })
 
-test("isMatch() returns false", () => {
+test("IsMatch() returns false", () => {
     let area = new Array<Array<number>>(3);
     let fasit = new Array<Array<number>>(3);
     let row = [0,0,0];
@@ -22,10 +22,10 @@ test("isMatch() returns false", () => {
 
     let rule = new Rule(1, area);
     expect(rule.ResultState).toBe(1);
-    expect(rule.isMatch(fasit)).toBe(false);
+    expect(rule.IsMatch(fasit)).toBe(false);
 })
 
-test("isMatch() handles undefined as values", () => {
+test("IsMatch() handles undefined as values", () => {
     let area = new Array<Array<number>>(3);
     let fasit = new Array<Array<number>>(3);
     let row = [0,undefined,0];
@@ -34,5 +34,5 @@ test("isMatch() handles undefined as values", () => {
 
     let rule = new Rule(1, area);
     expect(rule.ResultState).toBe(1);
-    expect(rule.isMatch(fasit)).toBe(true);
+    expect(rule.IsMatch(fasit)).toBe(true);
 })

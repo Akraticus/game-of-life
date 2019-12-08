@@ -1,4 +1,4 @@
-import { arraysEqual } from "./util";
+import { ArraysEqual } from "./util";
 
 export class Rule {
     private _area: Array<Array<number>>;
@@ -13,7 +13,7 @@ export class Rule {
 
     public get Area():Array<Array<number>> { return this._area.slice(); }
 
-    isMatch(area: Array<Array<number>>): boolean {
-        return arraysEqual(this._area, area);
+    IsMatch(area: Array<Array<number>>): boolean {
+        return ArraysEqual(this._area, area);
     }
 }

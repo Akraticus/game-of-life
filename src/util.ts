@@ -1,4 +1,4 @@
-export function arraysEqual(a, b){
+export function ArraysEqual(a, b){
     /*
         https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript:
         Array-aware equality checker:
@@ -11,7 +11,7 @@ export function arraysEqual(a, b){
     if (a.length!=b.length)  // assert same length
         return false;
     for(var i=0; i<a.length; i++)  // assert each element equal
-        if (!arraysEqual(a[i],b[i]))
+        if (!ArraysEqual(a[i],b[i]))
             return false;
     return true;
     } else {
